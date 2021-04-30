@@ -91,11 +91,15 @@ class Download(Resource):
 
 class Upload(Resource):
     def post(self):
-        parse = reqparse.RequestParser()
-        parse.add_argument('file', type=werkzeug.datastructures.FileStorage, location='files')
-        args = parse.parse_args()
-        image_file = args['file']
-        image_file.save("files/name.jpg")
+        try:
+            parse = reqparse.RequestParser()
+            parse.add_argument('file', type=werkzeug.datastructures.FileStorage, location='files')
+            args = parse.parse_args()
+            image_file = args['file']
+            image_file.save("files/name.jpg")
+            return "Uploaded", 200
+        except:
+            return "Some error", 401
 
     def get(self):
         return "FUCK YOU", 200
@@ -111,4 +115,4 @@ api.add_resource(User, "/api/user/<string:name>")
 api.add_resource(Download, "/api/download/<string:name>")
 api.add_resource(Upload, '/api/upload/')
 AutoIndex(app)
-app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+app.run(debug=True)
