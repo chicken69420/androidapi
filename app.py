@@ -4,4 +4,6 @@ from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 api = Api(app)
-app.run()
+
+if __name__ == "main":
+  app.run()
