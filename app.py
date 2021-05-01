@@ -44,7 +44,7 @@ class User(Resource):
         user = {
             "name": name,
             "age": args["age"],
-            "occpation": args["occupation"]
+            "occupation": args["occupation"]
         }
 
         users.append(user)
